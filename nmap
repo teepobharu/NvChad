@@ -1,0 +1,98 @@
+
+Choose between these colors r ed|g reen|y ellow|cy an
+
+echo with color avail with function cecho i.e.:
+ -> ceho "y" "This is yellow text"
+Choose between these colors r ed|g reen|y ellow|cy an
+test color
+/Users/tharutaipree/.bash_exports:36: unmatched "
+ mymappings.vim  mappings.vim  mappings.lua  mappings.lua                                                          [mappings.lua]⁴
+   21     -- switch between windows
+   20     ["<C-h>"] = { "<C-w>h", "Window left" },
+   19     ["<C-l>"] = { "<C-w>l", "Window right" },
+   18     ["<C-j>"] = { "<C-w>j", "Window down" },
+   17     ["<C-k>"] = { "<C-w>k", "Window up" },
+   16
+   15     -- save
+   14     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
+   13
+   12     -- Copy all
+   11     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
+   10
+    9     -- line numbers
+    8     ["<leader>n"] = { "<cmd> set nu! <CR>", "Toggle line number" },
+    7     ["<leader>rn"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
+    6
+    5     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
+    4     -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
+    3     -- empty mode is same as using <cmd> :map
+    2     -- also don't use g[j|k] when in operator pending mode, so it doesn't alter d, y or c behaviour
+!   1     -- ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
+! 41      -- ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
+n  <Plug>unimpairedBFirst * :<C-U>exe "".(v:count ? v:count : "")."bfirst"<CR>
+n  <Plug>unimpairedBNext * :<C-U>exe "".(v:count ? v:count : "")."bnext"<CR>
+n  <Plug>unimpairedBPrevious * :<C-U>exe "".(v:count ? v:count : "")."bprevious"<CR>
+n  <Plug>(unimpaired-blast) * :<C-U><C-R>=v:count ? v:count . "buffer" : "blast"<CR><CR>
+n  <Plug>(unimpaired-bfirst) * :<C-U><C-R>=v:count ? v:count . "buffer" : "bfirst"<CR><CR>
+n  <Plug>(unimpaired-bnext) * :<C-U>exe "".(v:count ? v:count : "")."bnext"<CR>
+n  <Plug>(unimpaired-bprevious) * :<C-U>exe "".(v:count ? v:count : "")."bprevious"<CR>
+n  <Plug>unimpairedALast * :<C-U>exe "".(v:count ? v:count : "")."last"<CR>
+n  <Plug>unimpairedAFirst * :<C-U>exe "".(v:count ? v:count : "")."first"<CR>
+n  <Plug>unimpairedANext * :<C-U>exe "".(v:count ? v:count : "")."next"<CR>
+n  <Plug>unimpairedAPrevious * :<C-U>exe "".(v:count ? v:count : "")."previous"<CR>
+n  <Plug>(unimpaired-last) * :<C-U><C-R>=v:count ? v:count . "argument" : "last"<CR><CR>
+n  <Plug>(unimpaired-first) * :<C-U><C-R>=v:count ? v:count . "argument" : "first"<CR><CR>
+n  <Plug>(unimpaired-next) * :<C-U>exe "".(v:count ? v:count : "")."next"<CR>
+n  <Plug>(unimpaired-previous) * :<C-U>exe "".(v:count ? v:count : "")."previous"<CR>
+n  <Plug>CommentaryUndo   :echoerr "Change your <Plug>CommentaryUndo map to <Plug>Commentary<Plug>Commentary"<CR>
+n  <Plug>ChangeCommentary * c:<C-U>call <SNR>55_textobject(1)<CR>
+n  <Plug>CommentaryLine * <SNR>55_go() . '_'
+n  <Plug>Commentary * <SNR>55_go()
+n  <Plug>YSurround * <SNR>54_opfunc2('setup')
+n  <Plug>Ysurround * <SNR>54_opfunc('setup')
+n  <Plug>YSsurround * <SNR>54_opfunc2('setup').'_'
+n  <Plug>Yssurround * '^'.v:count1.<SNR>54_opfunc('setup').'g_'
+n  <Plug>CSurround * :<C-U>call <SNR>54_changesurround(1)<CR>
+n  <Plug>Csurround * :<C-U>call <SNR>54_changesurround()<CR>
+n  <Plug>Dsurround * :<C-U>call <SNR>54_dosurround(<SNR>54_inputtarget())<CR>
+n  <Plug>SurroundRepeat * .
+n  <Plug>RadicalCoerceToBinary * :<C-U>call radical#CoerceToBase(2, v:count)<CR>
+n  <Plug>RadicalCoerceToOctal * :<C-U>call radical#CoerceToBase(8, v:count)<CR>
+n  <Plug>RadicalCoerceToHex * :<C-U>call radical#CoerceToBase(16, v:count)<CR>
+n  <Plug>RadicalCoerceToDecimal * :<C-U>call radical#CoerceToBase(10, v:count)<CR>
+n  <Plug>RadicalView * :<C-U>call radical#NormalView(v:count)<CR>
+n  <C-X>         <Plug>SpeedDatingDown
+n  <C-A>         <Plug>SpeedDatingUp
+n  <Plug>SpeedDatingFallbackDown * <C-X>
+n  <Plug>SpeedDatingFallbackUp * <C-A>
+n  <Plug>SpeedDatingNowUTC * :<C-U>call speeddating#timestamp(1,v:count)<CR>
+n  <Plug>SpeedDatingNowLocal * :<C-U>call speeddating#timestamp(0,v:count)<CR>
+n  <Plug>SpeedDatingDown * :<C-U>call speeddating#increment(-v:count1)<CR>
+n  <Plug>SpeedDatingUp * :<C-U>call speeddating#increment(v:count1)<CR>
+n  <M-C-O>     * <Lua 4: ~/.config/nvim/lua/basic.lua:49>
+                 output vim log messages
+n  <C-Space>   * :CtrlSpace<CR><Space>
+   <C-Bslash>  * :<C-U>TmuxNavigatePrevious<CR>
+n  <C-U>       * <C-U>zz
+n  <C-D>       * <C-D>zz
+n  <Right>     * :vertical resize -11 <CR>
+n  <Left>      * :vertical resize +10 <CR>
+n  <Down>      * :resize -10 <CR>
+n  <Up>        * :resize +10 <CR>
+n  <M-l>       * :vertical resize +2<CR>
+n  <M-h>       * :vertical resize -2<CR>
+n  <M-k>       * :m .-2<CR>==
+n  <M-j>       * :m .+1<CR>==
+   <C-K>       * :<C-U>TmuxNavigateUp<CR>
+   <C-J>       * :<C-U>TmuxNavigateDown<CR>
+   <C-H>       * :<C-U>TmuxNavigateLeft<CR>
+n  <C-C>       * <Esc>
+n  <C-Q>       * :wq!<CR>
+n  <C-S>       * :w<CR>
+n  <C-T>h      * :tabprevious<CR>
+n  <C-T>l      * :tabnext<CR>
+n  <C-T>x      * :tabclose<CR>
+n  <C-T>c      * :tabnew<CR>
+n  <S-Tab>     * :bprevious<CR>
+   <C-L>       * :<C-U>TmuxNavigateRight<CR>
+Press ENTER or type command to continue

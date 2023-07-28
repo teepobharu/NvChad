@@ -6,9 +6,6 @@
 require "core"
 
 
-
-
-
 -- print(script_dir .. 'init.lua')
 -- package.path = package.path .. ';' .. script_dir .. 'lua'
 
@@ -37,3 +34,4 @@ end
 dofile(vim.g.base46_cache .. "defaults")
 vim.opt.rtp:prepend(lazypath)
 require "plugins"
+require "custom.mymappings"

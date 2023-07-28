@@ -13,15 +13,22 @@ M.general = {
     ["<C-l>"] = { "<Right>", "Move right" },
     ["<C-j>"] = { "<Down>", "Move down" },
     ["<C-k>"] = { "<Up>", "Move up" },
+    -- ["<Tab>"] = {
+    --   function()
+        -- if cmp.visible() then 
+        --     cmp.select_next_item()
+        -- else if b:_copilot_completion then                        
+        --     vim.exec("copilot#Accept('<CR>')")
+        -- end,
+    -- },
   },
-
   n = {
     ["<Esc>"] = { ":noh <CR>", "Clear highlights" },
     -- switch between windows
-    ["<C-h>"] = { "<C-w>h", "Window left" },
-    ["<C-l>"] = { "<C-w>l", "Window right" },
-    ["<C-j>"] = { "<C-w>j", "Window down" },
-    ["<C-k>"] = { "<C-w>k", "Window up" },
+    -- ["<C-h>"] = { "<C-w>h", "Window left" },
+    -- ["<C-l>"] = { "<C-w>l", "Window right" },
+    -- ["<C-j>"] = { "<C-w>j", "Window down" },
+    -- ["<C-k>"] = { "<C-w>k", "Window up" },
 
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
@@ -37,10 +44,10 @@ M.general = {
     -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
     -- empty mode is same as using <cmd> :map
     -- also don't use g[j|k] when in operator pending mode, so it doesn't alter d, y or c behaviour
-    ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
-    ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
-    ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
-    ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
+    -- ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
+    -- ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
+    -- ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
+    -- ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
 
     -- new buffer
     ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },

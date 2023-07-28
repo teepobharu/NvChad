@@ -1,0 +1,150 @@
+
+Choose between these colors r ed|g reen|y ellow|cy an
+echo with color avail with function cecho i.e.:
+ -> ceho "y" "This is yellow text"
+Choose between these colors r ed|g reen|y ellow|cy an
+test color
+/Users/tharutaipree/.bash_exports:36: unmatched "
+/Users/tharutaipree/.config/exec/z.sh
+/Users/tharutaipree/.config/exec/z.sh
+compdef: unknown command or service: docker
+compdef: unknown command or service: docker-compose
+[oh-my-zsh] Random theme 'ys' loaded
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/AgodaGit/poc/vite-react1 on git:main x [21:27:52]
+$ zsh
+profile
+Choose between these colors r ed|g reen|y ellow|cy an
+echo with color avail with function cecho i.e.:
+ -> ceho "y" "This is yellow text"
+Choose between these colors r ed|g reen|y ellow|cy an
+test color
+          ◌ configs         │   92   │ group = vim.api.nvim_create_augroup("BeLazyOnFileOpen" .. plugin, {}),
+             ◌ lspconfig.lua │   93   │ callback = function()
+             ◌ null-ls.lua   │   94   │ │ local file = vim.fn.expand "%"
+             ◌ overrides.lua │   95   │ │ local condition = file ~= "NvimTree_1" and file ~= "[lazy]" and file ~= ""
+           ◌ chadrc.lua      │   96   │ │
+           ◌ highlights.lua  │   97   │ │ if condition then
+           ◌ init.lua        │   98   │ │ │ vim.api.nvim_del_augroup_by_name("BeLazyOnFileOpen" .. plugin)
+           ◌ mappings.lua    │   99   │ │ │
+           ◌ plugins.lua     │  100   │ │ │ -- dont defer for treesitter as it will show slow highlighting
+           ◌ README.md       │  101   │ │ │ -- This deferring only happens only when we do "nvim filename"
+        plugins             │  102   │ │ │ if plugin ~= "nvim-treesitter" then
+          configs           │  103   │ │ │ │ vim.schedule(function()
+             cmp.lua         │  104   │ │ │ │ │ require("lazy").load { plugins = plugin }
+             lazy_nvim.lua   │  105   │ │ │ │ │
+             lspconfig.lua   │  106   │ │ │ │ │ if plugin == "nvim-lspconfig" then
+             mason.lua       │  107   │ │ │ │ │ │ vim.cmd "silent! do FileType"
+             nvimtree.lua    │  108   │ │ │ │ │ end
+nv/Users/tharutaipree/.config/exec/z.sh
+/Users/tharutaipree/.config/exec/z.sh
+compdef: unknown command or service: docker
+compdef: unknown command or service: docker-compose
+im[oh-my-zsh] Random theme 'ys' loaded
+c %
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/AgodaGit/poc/vite-react1 on git:main x [21:30:42]
+$ nvimc 1
+Current nvim path=/Users/tharutaipree/.config/nvimChad
+* Selected option:
+ - /Users/tharutaipree/.config/nvimChad
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/AgodaGit/poc/vite-react1 on git:main x [21:30:45]
+$ nvim .
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/AgodaGit/poc/vite-react1 on git:main x [23:19:10]
+$ z nvimChad
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/.config/nvimChad [23:19:34]
+$ cd nvim
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/.config/nvimChad/nvim on git:myV2 x [23:19:36]
+$ nvim .
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/.config/nvimChad/nvim on git:myV2 x [23:26:20]
+$ nvim .
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/.config/nvimChad/nvim on git:myV2 x [23:26:42]
+$ nvim .
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/.config/nvimChad/nvim on git:myV2 x [23:36:39]
+$ nvim .
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/.config/nvimChad/nvim on git:myV2 x [23:41:32]
+$ nvim .
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/.config/nvimChad/nvim on git:myV2 x [23:42:21]
+$ nvim .
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/.config/nvimChad/nvim on git:myV2 x [0:48:27]
+$ nvim .
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/.config/nvimChad/nvim on git:myV2 x [1:14:13]
+$ nvim .
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/.config/nvimChad/nvim on git:myV2 x [1:47:39]
+$ nvim .
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/.config/nvimChad/nvim on git:myV2 x [1:48:57]
+$ nvim .
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/.config/nvimChad/nvim on git:myV2 x [1:51:44]
+$ nvim .
+(base)
+# tharutaipree @ W3JW2L0JXN in ~/.config/nvimChad/nvim on git:myV2 x [1:58:39]
+n  gc          * <Lua 23: ~/.local/share/nvim/lazy/lazy.nvim/lua/lazy/core/handler/keys.lua:67>
+                 Comment toggle linewise
+n  gbc         * <Lua 22: ~/.local/share/nvim/lazy/lazy.nvim/lua/lazy/core/handler/keys.lua:67>
+                 Comment toggle current block
+n  vaÞ         * <Nop>
+n  viÞ         * <Nop>
+n  vÞ          * <Nop>
+n  v           * <Cmd>lua require("which-key").show("v", {mode = "n", auto = true})<CR>
+n  yaÞ         * <Nop>
+n  yiÞ         * <Nop>
+n  yÞ          * <Nop>
+n  y           * <Cmd>lua require("which-key").show("y", {mode = "n", auto = true})<CR>
+n  zfaÞ        * <Nop>
+n  zfiÞ        * <Nop>
+n  zfÞ         * <Nop>
+n  zÞ          * <Nop>
+n  z           * <Cmd>lua require("which-key").show("z", {mode = "n", auto = true})<CR>
+   <Plug>luasnip-expand-repeat * <Lua 376: ~/.local/share/nvim/lazy/LuaSnip/plugin/luasnip.lua:35>
+n  <Plug>luasnip-delete-check * <Lua 374: ~/.local/share/nvim/lazy/LuaSnip/plugin/luasnip.lua:28>
+n  <C-W>Þ      * <Nop>
+n  <C-W>       * <Cmd>lua require("which-key").show("\23", {mode = "n", auto = true})<CR>
+n  <S-Tab>     * <Lua 87: ~/.config/nvimChad/nvim/lua/core/mappings.lua:88>
+                 Goto prev buffer
+n  <M-i>       * <Nop>
+n  <M-v>       * <Lua 83: ~/.config/nvimChad/nvim/lua/custom/mappings.lua:104>
+                 Toggle vertical term
+n  <F1>        * <Lua 78: ~/.config/nvimChad/nvim/lua/custom/mappings.lua:83>
+                 Toggle floating term
+n  <C-N>       * <Cmd> NvimTreeToggle <CR>
+                 Toggle nvimtree
+n  <C-S-Left>  * <C-W>+
+                 Resize window -2
+n  <C-K>       * <C-W>k
+                 Window up
+n  <C-J>       * <C-W>j
+                 Window down
+n  <M-j>       * <Cmd>resize -2<CR>
+                 Normal Mode Resize -2
+n  <C-H>       * <C-W>h
+                 Window left
+n  <C-L>       * <C-W>l
+                 Window right
+n  <M-l>       * <Cmd>vertical +2<CR>
+                 Normal Mode Vertical Resize +2
+n  <C-C>       * <Cmd> %y+ <CR>
+                 Copy whole file
+n  <M-h>       * <Lua 77: ~/.config/nvimChad/nvim/lua/custom/mappings.lua:97>
+                 Toggle horizontal term
+n  <M-k>       * <Cmd>m .-2<CR>==
+                 Move up
+n  <C-S>       * <Cmd> w <CR>
+                 Save file
+n  <C-S-Right> * <C-W>-
+                 Resize window -2
+   <C-Bslash>  * :<C-U>TmuxNavigatePrevious<CR>
+Press ENTER or type command to continue

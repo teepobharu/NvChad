@@ -3,4 +3,5 @@ if vim then
 else 
   print(321)
 end
+print(123)
 

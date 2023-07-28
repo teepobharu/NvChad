@@ -1,0 +1,217 @@
+local overrides = require("custom.configs.overrides")
+local vkey = vim.keymap
+local utils = require("custom.utils")
+vim.g.maplocalleader = ","
+local opts = { noremap = true, silent = true }
+-- local function combined_dict(dict1, dict2)
+--   return vim.tbl_extend("keep", dict1, dict2)
+-- end
+
+---@type NvPluginSpec[]
+local plugins = {
+
+  -- Override plugin definition options
+
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      -- format & linting
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+          require "custom.configs.null-ls"
+        end,
+      },
+    },
+    config = function()
+      require "plugins.configs.lspconfig"
+      require "custom.configs.lspconfig"
+    end, -- Override to setup mason-lspconfig
+  },
+
+  -- override plugin configs
+  {
+    "williamboman/mason.nvim",
+    opts = overrides.mason
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = overrides.treesitter,
+  },
+
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = overrides.nvimtree,
+  },
+
+  -- Install a plugin
+  {
+    "max397574/better-escape.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("better_escape").setup()
+    end,
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+    -- set keys in mymappings since overriden by default map 
+    keys = { },
+  },
+  {
+    "github/copilot.vim",
+    lazy = false,
+    config = function()
+        vim.g.copilot_no_tab_map = true
+        vim.api.nvim_set_keymap('i', '<C-/>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
+    end,
+    keys = {
+      -- { "<leader>c.", { "", mode = "i"}, desc = "Copilot next" },
+      -- { "<leader>c,", { "", mode = "i"}, desc = "Copilot prev" },
+      -- { "<leader>c,", { 'copilot#Accept(“<CR>”)', mode = "i" } },
+      -- { "<C-y>", { 'copilot#Accept(“<CR>”)', mode = "i" }, desc = "Copilot accept" },
+       -- { "<C-a>", { "<C-x>", mode = "n" } },
+      { "<leader>ce", "<cmd>Copilot panel<cr>”)", desc = "Copilot suggest" }, 
+    }
+  },
+  {
+    "mhinz/vim-startify",
+    lazy = false,
+    config = function()
+      require('custom.configs.startify')
+      vkey.set('n', "<localleader>,", "<cmd>Startify<cr>", utils.combine_dicts(opts, {desc = "Startify"}))
+      vkey.set('n', "<leader>,", "<cmd>Startify<cr>", utils.combine_dicts(opts, {desc = "Startify"}))
+    end,
+  },
+
+  {
+    "folke/which-key.nvim",
+    keys = { "<localleader>"},
+    -- keys = {  "<localleader>", "<leader>", '"', "'", "`", "c", "v", "g" },
+  }
+
+  -- To make a plugin not be loaded
+  -- {
+  --   "NvChad/nvim-colorizer.lua",
+  --   enabled = false
+  -- },
+
+  -- All NvChad plugins are lazy-loaded by default
+  -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
+  -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
+  -- {
+  --   "mg979/vim-visual-multi",
+  --   lazy = false,
+  -- }
+}
+
+-- call plug#begin('~/.config/nvim/autoload/plugged')
+
+--   Plug 'github/copilot.vim'
+--   " Change dates fast
+--   Plug 'tpope/vim-speeddating'
+--   " Convert binary, hex, etc..
+--   Plug 'glts/vim-radical'
+--   " Files
+--   Plug 'tpope/vim-eunuch'
+--   " Repeat stuff
+--   Plug 'tpope/vim-repeat'
+--   " Surround
+--   Plug 'tpope/vim-surround'
+--   " Better Comments
+--   Plug 'tpope/vim-commentary'
+--   " Key for faster navigationns [q 
+--   Plug 'tpope/vim-unimpaired'
+--   " Plug 'preservim/nerdcommenter'
+--   " Have the file system follow you around
+--   Plug 'airblade/vim-rooter'
+--   " auto set indent settings
+--   Plug 'tpope/vim-sleuth'
+
+--   if exists('g:vscode')
+--     " Easy motion for VSCode
+--     Plug 'asvetliakov/vim-easymotion'
+
+--   else
+--     " Text Navigation
+--     Plug 'justinmk/vim-sneak'
+--     " Plug 'unblevable/quick-scope'
+--     Plug 'easymotion/vim-easymotion'
+--     " Add some color
+--     Plug 'norcalli/nvim-colorizer.lua'
+--     Plug 'junegunn/rainbow_parentheses.vim'
+--     " Better Syntax Support
+--     Plug 'sheerun/vim-polyglot'
+--     " Cool Icons
+--     Plug 'ryanoasis/vim-devicons'
+--     " Auto pairs for '(' '[' '{' 
+--     Plug 'jiangmiao/auto-pairs'
+--     " Closetags
+--     Plug 'alvan/vim-closetag'
+--     " Themes
+--     " Plug 'christianchiarulli/onedark.vim'
+--     Plug 'joshdick/onedark.vim'
+--     Plug 'kaicataldo/material.vim'
+--     Plug 'NLKNguyen/papercolor-theme'
+--     Plug 'tomasiser/vim-code-dark'
+--     " Intellisense
+--     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+--     " Status Line
+--     Plug 'vim-airline/vim-airline'
+--     Plug 'vim-airline/vim-airline-themes'
+--     " Ranger
+--     " Plug 'francoiscabrol/ranger.vim'
+--     Plug 'rbgrouleff/bclose.vim'
+--     " Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+--     " FZF
+--     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+--     Plug 'junegunn/fzf.vim'
+--     " Git
+--     Plug 'mhinz/vim-signify'
+--     Plug 'airblade/vim-gitgutter'
+--     Plug 'tpope/vim-fugitive'
+--     Plug 'idanarye/vim-merginal'
+--     Plug 'tpope/vim-rhubarb'
+--     Plug 'junegunn/gv.vim'
+--     Plug 'stsewd/fzf-checkout.vim'
+--     " Terminal
+--     Plug 'voldikss/vim-floaterm'
+--     " Start Screen
+--     Plug 'mhinz/vim-startify'
+--     " Vista
+--     Plug 'liuchengxu/vista.vim'
+--     " See what keys do like in emacs
+--     Plug 'liuchengxu/vim-which-key'
+--     " Zen mode
+--     Plug 'junegunn/goyo.vim'
+--     " Making stuff
+--     Plug 'neomake/neomake'
+--     " Snippets
+--       " Plug 'honza/vim-snippets' " Disable on 2023-05-19  coc-snippets already worked
+--       Plug 'mattn/emmet-vim'
+--     " Better Comments
+--     " Plug 'jbgutierrez/vim-better-comments'
+--     " Echo doc
+--     " Plug 'Shougo/echodoc.vim'
+--     " Interactive code
+--     " Plug 'ChristianChiarulli/codi.vim' " Not working anymore
+--     Plug 'metakirby5/codi.vim'
+--     " Vim Wiki
+--     Plug 'https://github.com/vimwiki/vimwiki.git'
+
+--     " == My extra ==
+--     " Buffer Management
+--     Plug 'vim-ctrlspace/vim-ctrlspace'
+--     " Omni sharp
+--     " Plug 'OmniSharp/omnisharp-vim
+--     " Plug 'scrooloose/nerdtree'
+--     Plug 'houtsnip/vim-emacscommandline'
+--     " Tmux vim switch integration
+--     Plug 'christoomey/vim-tmux-navigator'
+--     "HTML EMMET
+--     Plug 'mattn/emmet-vim'
+--     Plug 'AndrewRadev/tagalong.vim'
+--   endif
+
+return plugins
