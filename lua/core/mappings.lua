@@ -24,6 +24,7 @@ M.general = {
   },
   n = {
     ["<Esc>"] = { ":noh <CR>", "Clear highlights" },
+    -- Should we custom/mapping - ignored section instead ?
     -- switch between windows
     -- ["<C-h>"] = { "<C-w>h", "Window left" },
     -- ["<C-l>"] = { "<C-w>l", "Window right" },
