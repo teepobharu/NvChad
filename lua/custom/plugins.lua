@@ -7,12 +7,31 @@ local opts = { noremap = true, silent = true }
 --   return vim.tbl_extend("keep", dict1, dict2)
 -- end
 
+local mappingFunction = { }
+
+mappingFunction.close_preview = function(prompt_bufnr)
+  local telescope_state = require('telescope.actions.state')
+  local current_picker = telescope_state.get_current_picker(prompt_bufnr)
+  current_picker:close_preview()
+end
+
+mappingFunction.lcd_preview = function(prompt_bufnr)
+  local telescope_state = require('telescope.actions.state')
+  local current_picker = telescope_state.get_current_picker(prompt_bufnr)
+  current_picker:lcd_preview()
+end
+
 ---@type NvPluginSpec[]
 local plugins = {
 
   -- Override plugin definition options
 
   {
+    "justinmk/vim-sneak",
+    lazy = true,
+  },
+  {
+    
     "neovim/nvim-lspconfig",
     dependencies = {
       -- format & linting
@@ -64,13 +83,24 @@ local plugins = {
     lazy = false,
     config = function()
         vim.g.copilot_no_tab_map = true
-        vim.api.nvim_set_keymap('i', '<C-/>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
+      vim.g['copilot_no_tab_map'] = true
+        vim.api.nvim_set_keymap('i', '<C-/>', 'copilot#Acceptt("\\<CR>")', {expr=true, silent=true})
     end,
     keys = {
+      -- mapping source : https://www.reddit.com/r/neovim/comments/qsfvki/how_to_remap_copilotvim_accept_method_in_lua/
+      --
       -- { "<leader>c.", { "", mode = "i"}, desc = "Copilot next" },
       -- { "<leader>c,", { "", mode = "i"}, desc = "Copilot prev" },
       -- { "<leader>c,", { 'copilot#Accept(“<CR>”)', mode = "i" } },
-      -- { "<C-y>", { 'copilot#Accept(“<CR>”)', mode = "i" }, desc = "Copilot accept" },
+      -- { "<C-e>", { 'copilot#Accept(“<CR>”)', mode = "i" }, desc = "Copilot accept" },
+      -- sample with mode settings => https://github.com/LazyVim/LazyVim/blob/566049aa4a26a86219dd1ad1624f9a1bf18831b6/lua/lazyvim/plugins/coding.lua#L28C44-L28C44
+      --
+      -- { "<C-/>", 'copilot#Accept("<CR>")', { mode = "i",  desc = "Copilot accept", silent = true, expr = true }},
+      { "<C-E>",
+        function()
+        -- vim.fn("copilot#Accept(“<CR>”)")
+        vim.fn["copilot#Accept"]("<CR>")
+      end, mode = "i" ,  desc = "Copilot accept", expr = true, silent = true},
        -- { "<C-a>", { "<C-x>", mode = "n" } },
       { "<leader>ce", "<cmd>Copilot panel<cr>”)", desc = "Copilot suggest" }, 
     }
@@ -89,6 +119,81 @@ local plugins = {
     "folke/which-key.nvim",
     keys = { "<localleader>"},
     -- keys = {  "<localleader>", "<leader>", '"', "'", "`", "c", "v", "g" },
+  },
+
+
+  {
+   "nvim-telescope/telescope.nvim",
+
+    opts = {
+
+      defaults = {
+        pickers = {
+          find_files = {
+            mappings = {
+              n = {
+                -- does not work not sure 
+                -- ref example recipe
+                -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#file-and-text-search-in-hidden-files-and-directories
+                -- source code
+                -- https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/mappings.lua#L97
+              }
+            }
+          },
+        },
+
+        -- https://github.com/nvim-telescope/telescope.nvim#default-mappings
+        mappings = {
+          -- to get desc (extract from object ?): https://github.com/nvim-telescope/telescope.nvim/blob/dc192faceb2db64231ead71539761e055df66d73/lua/telescope/mappings.lua#L208
+          i = {
+            ["<C-k>"] = function(...)
+              require("telescope.actions").move_selection_previous(...)
+            end, 
+            ["<C-j>"] = function(...)
+              require("telescope.actions").move_selection_next(...)
+            end, 
+            ["<C-h>"] = function(...)
+              require("telescope.actions").results_scrolling_left(...)
+            end, 
+            ["<C-l>"] = function(...)
+              require("telescope.actions").results_scrolling_right(...)
+            end, 
+          },
+          -- When the search text is focused 
+          n = {
+            -- name appear when hit ? but not exectuable
+              -- ["<esc>"] = mappingFunction.close_preview,
+              -- ["cd"] = mappingFunction.lcd_preview,
+           
+          -- See default mappings / fn name here: https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/mappings.lua#L154
+            ["<C-k>"] = function(...)
+              require("telescope.actions").move_selection_previous(...)
+            end, 
+            ["<C-j>"] = function(...)
+              require("telescope.actions").move_selection_next(...)
+            end, 
+            ["<C-h>"] = function(...)
+              require("telescope.actions").results_scrolling_left(...)
+            end, 
+            ["<C-l>"] = function(...)
+              require("telescope.actions").results_scrolling_right(...)
+            end, 
+            ["<esc>"] = function(...)
+              require("telescope.actions").close(...)
+            end,
+            ["cd"] = function(prompt_bufnr)
+              local selection = require("telescope.actions.state").get_selected_entry()
+              local dir = vim.fn.fnamemodify(selection.path, ":p:h")
+              -- require("telescope.actions").close(prompt_bufnr)
+
+              print("lcd to " .. dir) 
+              -- Depending on what you want put `cd`, `lcd`, `tcd`
+              vim.cmd(string.format("silent lcd %s", dir))
+            end
+          },
+        },
+      },
+    },
   }
 
   -- To make a plugin not be loaded

@@ -7,10 +7,11 @@ M.general = {
     [ "<A-k>" ] = { "<esc><cmd>m .-2<cr>==gi", "Move up" },
   },
   n = {
-    [ "<Up>" ] =  { ":resize -10<CR>", opts = { silent = true }},
-    [ "<Down>" ] =  { ":resize +10<CR>", opts = { silent = true }},
-    [ "<Left>" ] =  { ":vertical resize -10<CR>", opts = { silent = true }},
-    [ "<Right>" ] =  { ":vertical resize +10<CR>", opts = { silent = true }},
+    -- move to custom map 
+    -- [ "<Up>" ] =  { ":resize -10<CR>", opts = { silent = true }},
+    -- [ "<Down>" ] =  { ":resize +10<CR>", opts = { silent = true }},
+    -- [ "<Left>" ] =  { ":vertical resize -10<CR>", opts = { silent = true }},
+    -- [ "<Right>" ] =  { ":vertical resize +10<CR>", opts = { silent = true }},
       [";"] = { ":", "enter command mode", opts = { nowait = true } },
       ["<C-S-Left>"] = { "<C-W>+", "Resize window up +2" },
       ["<C-S-Right>"] = { "<C-W>-", "Resize window down -2" },
@@ -38,6 +39,13 @@ M.disabled = {
   n = {
       ["<leader>h"] = "",
       ["<A-h>"] = "",
+  }
+  }
+
+M.nvimtree = {
+  plugin = true,
+  n = {
+        ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
   }
 }
 
@@ -105,20 +113,53 @@ M.nvterm = {
     },
 
     -- new
-    ["<leader>h"] = {
+    ["<leader>th"] = {
       function()
         require("nvterm.terminal").new "horizontal"
       end,
       "New horizontal term",
     },
 
-    ["<leader>v"] = {
+    ["<leader>tv"] = {
       function()
         require("nvterm.terminal").new "vertical"
       end,
       "New vertical term",
     },
   },
+}
+
+M.telescope = {
+  plugin = true,
+
+  n = {
+    ["<leader>fr"] = { 
+      function()
+        require('telescope.builtin').lsp_references()
+      end
+      ,"LSP Find References" },
+
+    ["<leader>fg"] = {
+      function()
+        local is_inside_work_tree = {}
+        local opts = {} -- define here if you want to define something
+
+        local cwd = vim.fn.getcwd()
+        if is_inside_work_tree[cwd] == nil then
+          vim.fn.system("git rev-parse --is-inside-work-tree")
+          is_inside_work_tree[cwd] = vim.v.shell_error == 0
+        end
+
+        if is_inside_work_tree[cwd] then
+          builtin.git_files(opts)
+        else
+          builtin.find_files(opts)
+        end
+      end
+      ,"LSP Find Files Git"
+
+    }
+  }
 }
 
 M.whichkey = {
@@ -134,9 +175,67 @@ M.whichkey = {
     },
     ["<leader>ns"] = {
       "",""
-    }
+    },
+    ["<leader>S"] = {
+      "<cmd>SSave<CR>",
+      "Save Session"
+    },
   }
 }
 
+
+M.gitsigns = {
+  plugin = true,
+  n = {
+    -- Navigation through hunks
+    ["<C-j>"] = {
+      function()
+        if vim.wo.diff then
+          return "]c"
+        end
+        vim.schedule(function()
+          require("gitsigns").next_hunk()
+        end)
+        return "<Ignore>"
+      end,
+      "Jump to next hunk",
+      opts = { expr = true },
+    },
+
+    ["<C-k>"] = {
+      function()
+        if vim.wo.diff then
+          return "[c"
+        end
+        vim.schedule(function()
+          require("gitsigns").prev_hunk()
+        end)
+        return "<Ignore>"
+      end,
+      "Jump to prev hunk",
+      opts = { expr = true },
+    },
+
+    -- Actions
+    ["<M-z>"] = {
+      function()
+        require("gitsigns").reset_hunk()
+      end,
+      "Reset hunk",
+    },
+    ["<leader>gr"] = {
+      function()
+        require("gitsigns").reset_hunk()
+      end,
+      "Reset hunk",
+    },
+    ["<leader>gd"] = {
+        function()
+          require("gitsigns").diffthis()
+        end,
+        "Diff this"
+    }
+  }
+}
 
 return M

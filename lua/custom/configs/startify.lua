@@ -1,3 +1,5 @@
+-- improt inside plugins config
+
 vim.g.startify_custom_header = {
     '       _  __     _         __  ___         __     ___ ',
     '      / |/ /  __(_)_ _    /  |/  /__ _____/ /    |_  |',
@@ -28,14 +30,15 @@ end
 
 vim.g.startify_bookmarks = {
     { c = '~/.config' },
-    { i = '~/.config/nvim/init.vim' },
+    { i = '~/.config/nvimChad/nvim/init.lua' },
     { z = '~/.zshrc' },
     { t = '~/.tmux.conf' },
     { b = '~/.bash_profile' },
     { a = '~/.bash_aliases' },
-    { r = '~/.config/karabiner/assets/complex_modifications/capslock.json' },
+    { K = '~/.config/karabiner/karabiner.json' },
+    -- { r = '~/.config/karabiner/assets/complex_modifications/capslock.json' },
     { s = '~/.slate' },
-    { ['.'] = '~/.config/nvim/plug-config/start-screen.vim' },
+    { ['.'] = '~/.config/nvimChad/nvim/plug-config/start-screen.vim' },
     { w = '~/.config/nvim/keys/which-key.vim' },
     { G = '~/AgodaGit' },
     { ms = '~/AgodaGit/fe/mspa/Agoda.Mobile.Client/package.json' },
