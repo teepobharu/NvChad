@@ -79,6 +79,43 @@ local plugins = {
     keys = { },
   },
   {
+    "hrsh7th/nvim-cmp",
+    
+    -- https://github.com/NvChad/NvChad/issues/2332
+    -- config = function()
+    --   local cmp = require("cmp")
+    --   mapping = {
+    --
+    --     ["<C-p>"] = cmp.mapping.select_prev_item(),
+    --     ["<C-n>"] = cmp.mapping.select_next_item(),
+    --     ["<C-e>"] = cmp.mapping.close(),
+    --     ["<CR>"] = cmp.mapping.confirm({
+    --       behavior = cmp.ConfirmBehavior.Replace,
+    --       select = true,
+    --     }),
+    -- }
+    -- end,
+    -- broked the c-space
+    opts = function()
+          local cmp = require("cmp")
+          local cmp_conf = require "plugins.configs.cmp"
+          table.insert(cmp_conf.sources, { name = "copilot"})
+    --       table.insert(cmp_conf.mapping, {
+    --         ["<C-j>"] = cmp.mapping.select_next_item(),
+    --         ["<C-k>"] = cmp.mapping.select_prev_item(),
+    --         ["<Esc>"] = cmp.mapping.abort(),
+          -- })
+      -- merge mapping deep by copiolt
+        cmp_conf.mapping = utils.combine_dicts(cmp_conf.mapping, {
+          ["<C-j>"] = cmp.mapping.select_next_item(),
+          ["<C-k>"] = cmp.mapping.select_prev_item(),
+          ["<Esc>"] = cmp.mapping.abort(),
+        })
+        return cmp_conf
+    end,
+    --
+	},
+  {
     "github/copilot.vim",
     lazy = false,
     config = function()

@@ -57,7 +57,7 @@ vim.cmd([[
   " imap <silent><expr> <C-J> copilot#Accept("\<CR>")
   " imap <silent><expr> <C-e> copilot#Accept("\<CR>")
   " imap <silent><expr> <C-E> copilot#Accept("\<CR>")
-  imap <silent><expr> <C-o> copilot#Accept("\<CR>") 
+  imap <silent><expr> <C-o> copilot#Accept("\<CR>")  " working
   " imap <silent><expr> <C-/> copilot#Accept("\<CR>")
   let g:copilot_no_tab_map = v:true
 ]])

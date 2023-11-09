@@ -2,6 +2,12 @@
 
 local M = {}
 
+M.disabled = {
+  n = {
+    ["gx"] = ""
+  }
+}
+
 M.general = {
   i = {
     -- go to  beginning and end
