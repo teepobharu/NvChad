@@ -99,7 +99,7 @@ local plugins = {
     opts = function()
           local cmp = require("cmp")
           local cmp_conf = require "plugins.configs.cmp"
-          table.insert(cmp_conf.sources, { name = "copilot"})
+          -- table.insert(cmp_conf.sources, { name = "copilot"})
     --       table.insert(cmp_conf.mapping, {
     --         ["<C-j>"] = cmp.mapping.select_next_item(),
     --         ["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -110,6 +110,7 @@ local plugins = {
           ["<C-j>"] = cmp.mapping.select_next_item(),
           ["<C-k>"] = cmp.mapping.select_prev_item(),
           ["<Esc>"] = cmp.mapping.abort(),
+          ["<C-Space>"] = cmp.mapping.abort(), -- does not replace the original mapping
         })
         return cmp_conf
     end,

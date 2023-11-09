@@ -39,8 +39,9 @@ M.disabled = {
   n = {
       ["<leader>h"] = "",
       ["<A-h>"] = "",
+      ["gx"] = "",
   }
-  }
+}
 
 M.nvimtree = {
   plugin = true,
