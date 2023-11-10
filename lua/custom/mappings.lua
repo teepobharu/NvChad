@@ -12,41 +12,43 @@ M.general = {
     -- [ "<Down>" ] =  { ":resize +10<CR>", opts = { silent = true }},
     -- [ "<Left>" ] =  { ":vertical resize -10<CR>", opts = { silent = true }},
     -- [ "<Right>" ] =  { ":vertical resize +10<CR>", opts = { silent = true }},
-      [";"] = { ":", "enter command mode", opts = { nowait = true } },
-      ["<C-S-Left>"] = { "<C-W>+", "Resize window up +2" },
-      ["<C-S-Right>"] = { "<C-W>-", "Resize window down -2" },
-      [ "<A-k>" ] = { ":m .-2<cr>==", "Move up" },
-      [ "<A-j>" ] = { ":m .+1<cr>==", "Move " },
-    },
-    t = {
-      -- ["<C-h>"] = { "<C-w>h", "Window left" },
-      -- ["<C-l>"] = { "<C-w>l", "Window right" },
-      -- ["<C-j>"] = { "<C-w>j", "Window down" },
-      -- ["<C-k>"] = { "<C-w>k", "Window up" },
-    },
-    v = {
-      [ "<A-j>" ] = { ":m '>+1<cr>gv=gv", "Move down" },
-      [ "<A-k>" ] = { ":m '<-2<cr>gv=gv", "Move up" }, 
-    },
-    -- x = {
+    -- [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    ["<C-S-Left>"] = { "<C-W>+", "Resize window up +2" },
+    ["<C-S-Right>"] = { "<C-W>-", "Resize window down -2" },
+    [ "<A-k>" ] = { ":m .-2<cr>==", "Move up" },
+    [ "<A-j>" ] = { ":m .+1<cr>==", "Move " },
+  },
+  t = {
+    -- ["<C-h>"] = { "<C-w>h", "Window left" },
+    -- ["<C-l>"] = { "<C-w>l", "Window right" },
+    -- ["<C-j>"] = { "<C-w>j", "Window down" },
+    -- ["<C-k>"] = { "<C-w>k", "Window up" },
+  },
+  v = {
+    [ "<A-j>" ] = { ":m '>+1<cr>gv=gv", "Move down" },
+    [ "<A-k>" ] = { ":m '<-2<cr>gv=gv", "Move up" }, 
+    [ ">" ] = { ">gv", "Better Indent right" },
+    [ "<" ] = { "<gv", "Better Indent left" },
+  },
+  -- x = {
 
-    -- }
+  -- }
 }
 
 -- more keybinds!
 
 M.disabled = {
   n = {
-      ["<leader>h"] = "",
-      ["<A-h>"] = "",
-      ["gx"] = "",
+    ["<leader>h"] = "",
+    ["<A-h>"] = "",
+    ["gx"] = "",
   }
 }
 
 M.nvimtree = {
   plugin = true,
   n = {
-        ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
+    ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
   }
 }
 
@@ -58,7 +60,7 @@ M.nvterm = {
     ["<A-i>"] = {
       ""
       -- function()
-        -- require("nvterm.terminal").toggle "float"
+      -- require("nvterm.terminal").toggle "float"
       -- end,
       -- "Toggle floating term",
     },
@@ -129,6 +131,7 @@ M.nvterm = {
     },
   },
 }
+
 
 M.telescope = {
   plugin = true,
@@ -231,10 +234,10 @@ M.gitsigns = {
       "Reset hunk",
     },
     ["<leader>gd"] = {
-        function()
-          require("gitsigns").diffthis()
-        end,
-        "Diff this"
+      function()
+        require("gitsigns").diffthis()
+      end,
+      "Diff this"
     }
   }
 }

@@ -25,13 +25,30 @@ end
 local plugins = {
 
   -- Override plugin definition options
-
   {
     "justinmk/vim-sneak",
     lazy = true,
+    event = "InsertEnter",
   },
   {
-    
+    "folke/noice.nvim",
+    event = "VeryLazy", 
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+    }
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
       -- format & linting
@@ -80,7 +97,7 @@ local plugins = {
   },
   {
     "hrsh7th/nvim-cmp",
-    
+
     -- https://github.com/NvChad/NvChad/issues/2332
     -- config = function()
     --   local cmp = require("cmp")
@@ -97,32 +114,32 @@ local plugins = {
     -- end,
     -- broked the c-space
     opts = function()
-          local cmp = require("cmp")
-          local cmp_conf = require "plugins.configs.cmp"
-          -- table.insert(cmp_conf.sources, { name = "copilot"})
-    --       table.insert(cmp_conf.mapping, {
-    --         ["<C-j>"] = cmp.mapping.select_next_item(),
-    --         ["<C-k>"] = cmp.mapping.select_prev_item(),
-    --         ["<Esc>"] = cmp.mapping.abort(),
-          -- })
+      local cmp = require("cmp")
+      local cmp_conf = require "plugins.configs.cmp"
+      -- table.insert(cmp_conf.sources, { name = "copilot"})
+      --       table.insert(cmp_conf.mapping, {
+      --         ["<C-j>"] = cmp.mapping.select_next_item(),
+      --         ["<C-k>"] = cmp.mapping.select_prev_item(),
+      --         ["<Esc>"] = cmp.mapping.abort(),
+      -- })
       -- merge mapping deep by copiolt
-        cmp_conf.mapping = utils.combine_dicts(cmp_conf.mapping, {
-          ["<C-j>"] = cmp.mapping.select_next_item(),
-          ["<C-k>"] = cmp.mapping.select_prev_item(),
-          ["<Esc>"] = cmp.mapping.abort(),
-          ["<C-Space>"] = cmp.mapping.abort(), -- does not replace the original mapping
-        })
-        return cmp_conf
+      cmp_conf.mapping = utils.combine_dicts(cmp_conf.mapping, {
+        ["<C-j>"] = cmp.mapping.select_next_item(),
+        ["<C-k>"] = cmp.mapping.select_prev_item(),
+        ["<Esc>"] = cmp.mapping.abort(),
+        ["<C-Space>"] = cmp.mapping.abort(), -- does not replace the original mapping
+      })
+      return cmp_conf
     end,
     --
-	},
+  },
   {
     "github/copilot.vim",
     lazy = false,
     config = function()
-        vim.g.copilot_no_tab_map = true
+      vim.g.copilot_no_tab_map = true
       vim.g['copilot_no_tab_map'] = true
-        vim.api.nvim_set_keymap('i', '<C-/>', 'copilot#Acceptt("\\<CR>")', {expr=true, silent=true})
+      vim.api.nvim_set_keymap('i', '<C-/>', 'copilot#Acceptt("\\<CR>")', {expr=true, silent=true})
     end,
     keys = {
       -- mapping source : https://www.reddit.com/r/neovim/comments/qsfvki/how_to_remap_copilotvim_accept_method_in_lua/
@@ -136,10 +153,10 @@ local plugins = {
       -- { "<C-/>", 'copilot#Accept("<CR>")', { mode = "i",  desc = "Copilot accept", silent = true, expr = true }},
       { "<C-E>",
         function()
-        -- vim.fn("copilot#Accept(“<CR>”)")
-        vim.fn["copilot#Accept"]("<CR>")
-      end, mode = "i" ,  desc = "Copilot accept", expr = true, silent = true},
-       -- { "<C-a>", { "<C-x>", mode = "n" } },
+          -- vim.fn("copilot#Accept(“<CR>”)")
+          vim.fn["copilot#Accept"]("<CR>")
+        end, mode = "i" ,  desc = "Copilot accept", expr = true, silent = true},
+      -- { "<C-a>", { "<C-x>", mode = "n" } },
       { "<leader>ce", "<cmd>Copilot panel<cr>”)", desc = "Copilot suggest" }, 
     }
   },
@@ -161,7 +178,7 @@ local plugins = {
 
 
   {
-   "nvim-telescope/telescope.nvim",
+    "nvim-telescope/telescope.nvim",
 
     opts = {
 
@@ -200,10 +217,10 @@ local plugins = {
           -- When the search text is focused 
           n = {
             -- name appear when hit ? but not exectuable
-              -- ["<esc>"] = mappingFunction.close_preview,
-              -- ["cd"] = mappingFunction.lcd_preview,
-           
-          -- See default mappings / fn name here: https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/mappings.lua#L154
+            -- ["<esc>"] = mappingFunction.close_preview,
+            -- ["cd"] = mappingFunction.lcd_preview,
+
+            -- See default mappings / fn name here: https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/mappings.lua#L154
             ["<C-k>"] = function(...)
               require("telescope.actions").move_selection_previous(...)
             end, 
