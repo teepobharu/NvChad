@@ -17,6 +17,7 @@ M.general = {
     ["<C-S-Right>"] = { "<C-W>-", "Resize window down -2" },
     [ "<A-k>" ] = { ":m .-2<cr>==", "Move up" },
     [ "<A-j>" ] = { ":m .+1<cr>==", "Move " },
+    [",c"] = { ":lcd%:p:h <CR>", "CD to current dir"},
   },
   t = {
     -- ["<C-h>"] = { "<C-w>h", "Window left" },
