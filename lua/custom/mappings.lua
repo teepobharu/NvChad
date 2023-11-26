@@ -181,6 +181,10 @@ M.whichkey = {
     ["<leader>ns"] = {
       "",""
     },
+    ["<leader>s"] = {
+      "<cmd>Telescope<CR>",
+      "Telescope"
+    },
     ["<leader>S"] = {
       "<cmd>SSave<CR>",
       "Save Session"

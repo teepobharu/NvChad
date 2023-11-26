@@ -70,7 +70,20 @@ local plugins = {
     "williamboman/mason.nvim",
     opts = overrides.mason
   },
-
+  {
+    -- no output
+    -- https://github.com/nvim-telescope/telescope-z.nvim
+    -- alternative 1
+    -- https://github.com/jvgrootveld/telescope-zoxide/blob/main/lua/telescope/_extensions/zoxide/list.lua
+    "nvim-telescope/telescope-z.nvim",
+    lazy = true,
+    config = function()
+      require("telescope").load_extension "z"
+    end,
+    opts = {
+      cmd = { vim.o.shell, "-c", "zoxide query -l" },
+    }
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = overrides.treesitter,
