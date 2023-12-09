@@ -197,7 +197,7 @@ M.gitsigns = {
   plugin = true,
   n = {
     -- Navigation through hunks
-    ["<C-j>"] = {
+    ["<C-S-j>"] = {
       function()
         if vim.wo.diff then
           return "]c"
@@ -211,7 +211,7 @@ M.gitsigns = {
       opts = { expr = true },
     },
 
-    ["<C-k>"] = {
+    ["<C-S-k>"] = {
       function()
         if vim.wo.diff then
           return "[c"
