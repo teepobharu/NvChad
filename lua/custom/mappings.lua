@@ -30,6 +30,7 @@ M.general = {
     [ "<A-k>" ] = { ":m '<-2<cr>gv=gv", "Move up" }, 
     [ ">" ] = { ">gv", "Better Indent right" },
     [ "<" ] = { "<gv", "Better Indent left" },
+    ["//"] = { "y/\\V<C-R>=escape(@\",'/\\')<CR><CR>", "Search selected visual" },
   },
   -- x = {
 
