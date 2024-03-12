@@ -226,9 +226,11 @@ local plugins = {
             ["<C-l>"] = function(...)
               require("telescope.actions").results_scrolling_right(...)
             end, 
+            ['<c-d>'] = require('telescope.actions').delete_buffer,
           },
           -- When the search text is focused 
           n = {
+            ['<c-d>'] = require('telescope.actions').delete_buffer,
             -- name appear when hit ? but not exectuable
             -- ["<esc>"] = mappingFunction.close_preview,
             -- ["cd"] = mappingFunction.lcd_preview,
