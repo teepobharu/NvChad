@@ -39,6 +39,7 @@ vim.g.startify_bookmarks = {
     -- { r = '~/.config/karabiner/assets/complex_modifications/capslock.json' },
     { s = '~/.slate' },
     { ['.'] = '~/.config/nvimChad/nvim/plug-config/start-screen.vim' },
+    { p = '~/.config/nvimChad/nvim/vim-plug/plugins.vim' },
     { w = '~/.config/nvim/keys/which-key.vim' },
     { G = '~/AgodaGit' },
     { ms = '~/AgodaGit/fe/mspa/Agoda.Mobile.Client/package.json' },

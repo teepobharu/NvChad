@@ -2,7 +2,6 @@ local overrides = require("custom.configs.overrides")
 local vkey = vim.keymap
 local utils = require("custom.utils")
 vim.g.maplocalleader = ","
-local opts = { noremap = true, silent = true }
 -- local function combined_dict(dict1, dict2)
 --   return vim.tbl_extend("keep", dict1, dict2)
 -- end
@@ -178,6 +177,8 @@ local plugins = {
     lazy = false,
     config = function()
       require('custom.configs.startify')
+
+      local opts = { noremap = true, silent = true }
       vkey.set('n', "<localleader>,", "<cmd>Startify<cr>", utils.combine_dicts(opts, {desc = "Startify"}))
       vkey.set('n', "<leader>,", "<cmd>Startify<cr>", utils.combine_dicts(opts, {desc = "Startify"}))
     end,
@@ -194,7 +195,6 @@ local plugins = {
     "nvim-telescope/telescope.nvim",
 
     opts = {
-
       defaults = {
         pickers = {
           find_files = {
