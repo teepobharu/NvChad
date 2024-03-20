@@ -3,6 +3,7 @@
 -- local script_dir = debug.getinfo(1, "S").source:sub(2):match("(.*/)")
 -- vim.opt.runtimepath:append(',' .. script_dir)
 -- print(vim.inspect(vim.api.nvim_list_runtime_paths()))
+--
 require "core"
 
 
@@ -35,3 +36,4 @@ dofile(vim.g.base46_cache .. "defaults")
 vim.opt.rtp:prepend(lazypath)
 require "plugins"
 require "custom.mymappings"
+
